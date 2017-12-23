@@ -1,0 +1,24 @@
+<!doctype html> 
+ <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+ <head> 
+     <meta charset="UTF-8"/> 
+     <meta name="viewport" 
+           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/> 
+     <meta http-equiv="X-UA-Compatible" content="ie=edge"/> 
+     <title>Document</title> 
+ </head> 
+<body>
+	<h1>this is login page</h1><br>
+	<p>login please</p><br>
+	<form action="" th:action="@{/login}" method="post">
+		<label>enter your e-mail</label><br>
+		<input type="text" id="email" name="email" placeholder="name"/><br>
+		<label>enter your password</label><br>
+		<input type="password" id="password" name="password" placeholder="password"/><br>
+		<input type="submit" value="log in"/>
+		<input type="hidden"
+	th:name="${_csrf.parameterName}"
+	th:value="${_csrf.token}"/>
+	</form>
+</body>
+</html>
