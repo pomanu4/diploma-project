@@ -10,7 +10,7 @@ import one.two.three.service.IorderDetail;
 public class ActivUserOrderDetailChecker {
 	
 	@Autowired
-	IorderDetail odService;
+	private IorderDetail odService;
 	
 	public boolean CheckActiveOrder(int user_id) {
 		OrderDetails orderDetails = odService.findActiveUserOrdrForComponent(user_id);

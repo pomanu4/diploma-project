@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+ <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+ <head> 
+     <meta charset="UTF-8"/> 
+     <meta name="viewport" 
+           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/> 
+     <meta http-equiv="X-UA-Compatible" content="ie=edge"/> 
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	 <link rel = "stylesheet" href = "style/bootstrap.min.css">
+	 <link rel="stylesheet" href="style/style.css"/>
+     <link rel="stylesheet" href="style/main.css"/>
+     <title></title> 
+ </head> 
+<body>
+	<div class="container-fluid ">
+		<div class="row row1">
+			<div class="col-md-3 col-sm-3 navbar-header">
+				<a class="navbar-brand" th:href="@{indexPage}">TheBestWebSite</a>
+			</div>
+			<div class="col-md-7 col-sm-6">
+				<nav>
+					<ul class="nav navbar-nav upperMeny">
+						<li><a th:href="@{admin-complainList}">Complains</a></li>
+						<li><a th:href="@{logout}">log out</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-md-2 col-sm-3 nav navbar-nav ">
+				<a  th:href="@{information}" class="first">about us	</a>
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-md-9 middleBlock">
+				<div class="tableDiv">
+					<table class="table table-bordered">
+						<tr>
+							<th class="tableArea" >user ID</th>
+							<th class="tableArea" >User name</th>
+							<th class="tableArea" >user Email</th>
+							<th class="tableArea">user ROLE</th>
+							
+						</tr>
+						<tr th:each="user : ${userlist}" class="tableArea">
+							<td th:text="'ID- '+${user.id}" class="tableArea">id</td>
+							<td  class="tableArea"><a th:text="'NAME: '+${user.name}" th:href="@{'admin-user-'+${user.id}}">name</a></td>
+							<td  th:text="'EMAIL: '+${user.email}" class="tableArea">email</td>
+							<td  th:text="'ROLE: '+${user.role}" class="tableArea">ROLE</td>
+							
+						</tr>
+					</table>
+				</div>
+				
+			</div>
+			<div class="adv col-md-3">reclama 111</div>
+			<div class="col-md-12 col-sm-12 container-fluid footer">footer</div>
+		</div>
+	</div>
+
+</body>
+</html>

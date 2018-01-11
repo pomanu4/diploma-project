@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -31,7 +32,7 @@ public class User implements UserDetails {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-
+	
 	private String name;
 	
 	@NotNull
@@ -39,16 +40,21 @@ public class User implements UserDetails {
 	@Email(message="wrong email adress")
 	private String email;
 	
-	@NotNull(message="")
-	@NotEmpty(message="")
+	@NotBlank(message="enter somting else please")
 	@Size(min=4, message="password has to bee not shorter then 4 signs ")
 	private String password;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="owner")
 	private List<Product> products = new ArrayList<>();
 	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
+	private List<Comment> myComment = new ArrayList<>();
+	
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private DetailUserInfo userInfo;
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="author")
+	private List<Complain> myBlame = new ArrayList<>();
 	
 	@Enumerated(EnumType.STRING)
 	private Authurity role = Authurity.ROLE_USER;
@@ -128,17 +134,38 @@ public class User implements UserDetails {
 		info.setUser(this);
 		this.setUserInfo(info);
 	}
+	
+	public void addMyComment(Comment comment) {
+		comment.setUser(this);
+		this.getMyComment().add(comment);
+	}
+
+	public List<Comment> getMyComment() {
+		return myComment;
+	}
+
+	public void setMyComment(List<Comment> myComment) {
+		this.myComment = myComment;
+	}
+	
+	public List<Complain> getMyBlame() {
+		return myBlame;
+	}
+
+	public void setMyBlame(List<Complain> myBlame) {
+		this.myBlame = myBlame;
+	}
+
+	public void addBlame(Complain blame) {
+		blame.setAuthor(this);
+		this.getMyBlame().add(blame);
+	}
 
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", email=" + email + ", password=" + password + "]";
 	}
 
-	
-	
-	
-	
-	
 	
 	
 	
@@ -168,6 +195,10 @@ public class User implements UserDetails {
 	@Override
 	public boolean isAccountNonLocked() {
 		return accountNonLocked;
+	}
+
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
 	}
 
 	@Override

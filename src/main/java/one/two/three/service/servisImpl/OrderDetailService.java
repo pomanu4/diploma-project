@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import one.two.three.DAO.OrderDetailDAO;
+import one.two.three.DAO.IorderDetailDAO;
 import one.two.three.entity.DetailUserInfo;
 import one.two.three.entity.OrderDetails;
 import one.two.three.entity.OrderStatus;
@@ -14,17 +14,17 @@ import one.two.three.entity.SimpleOrder;
 import one.two.three.entity.User;
 import one.two.three.service.IdetailUserInfo;
 import one.two.three.service.IorderDetail;
-import one.two.three.service.IserviceUser;
+import one.two.three.service.IuserService;
 
 @Service
 @Transactional
 public class OrderDetailService implements IorderDetail {
 	@Autowired
-	OrderDetailDAO odDAO;
+	private IorderDetailDAO odDAO;
 	@Autowired
-	IserviceUser userService;
+	private IuserService userService;
 	@Autowired
-	IdetailUserInfo duiService;
+	private IdetailUserInfo duiService;
 
 	@Override
 	public void saveOrderDetail(OrderDetails orderDetails) {

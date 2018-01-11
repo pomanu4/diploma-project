@@ -1,41 +1,114 @@
 <!doctype html> 
- <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" > 
+ <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
  <head> 
      <meta charset="UTF-8"/> 
      <meta name="viewport" 
            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/> 
      <meta http-equiv="X-UA-Compatible" content="ie=edge"/> 
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	 <link rel = "stylesheet" href = "style/bootstrap.min.css">
+	 <link rel="stylesheet" href="style/style.css"/>
      <link rel="stylesheet" href="style/main.css"/>
-     <title>Document</title> 
+     <title>Main page</title> 
  </head> 
 <body>
-	<h4>you can fill registration form there</h4><br>
-	<div>
-		<span th:text="${message}">some text</span>
-		<form action="userReg" th:action="@{userReg}" th:object="${user}" method="post" enctype="multipart/form-data">
-			<label>input your name</label><br>
-			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Incorrect name</p>
-			<input type="text" th:field="*{name}" placeholder=" name" /><br>
-			
-			<label>input your email</label><br>
-			<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">error message</p>
-			<input type="text" th:field="${user.email}" placeholder="some@email" /><br>
-			
-			<label>chose your password</label><br>
-			<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error message</p>
-			<input type="password" th:field="${user.password}" placeholder="*******"/><br>
-			
-			<label>contact</label><br>
-			<textarea name="contactInformation" rows=5 cols=30 placeholder="put there contact information"></textarea><br>
-			
-			<label>chose your photo</label><br>
-			<input type="file" name="userPhoto"/><br>
-			
-			<input type="submit" value="go !!1"/>
-			<input	type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-		</form>
+<div class="container-fluid ">
+	<div class="row row1">
+				<div class="col-md-3 col-sm-3 navbar-header">
+					<a class="navbar-brand" th:href="@{indexPage}">TheBestWebSite</a>
+				</div>
+				<div class="col-md-7 col-sm-6">
+					<nav>
+						<ul class="nav navbar-nav upperMeny">
+							<li><a href="#">registration</a></li>
+							<li><a href="#">to login page</a></li>
+							<li><a href="#">to user page</a></li>
+							<li><a href="#">log out</a></li>
+							<li><a href="#">language</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-md-2 col-sm-3 nav navbar-nav ">
+					<a th:href="@{information}" class="first">
+						about us
+					</a>
+				</div>
+			</div>
 	
+	<div class="row">
+		<div class="col-md-9 middleBlock">
+			<form class="regForm" th:object="${user}" th:action="@{userReg}" method="post" action="#"  enctype="multipart/form-data" >
+						
+				<div class="form-group">
+					<label class="cols-sm-2 control-label">Your Name</label>
+					<p class="warningMess" th:if="${#fields.hasErrors('*')}" th:errors="*{name}">warning message</p>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+							<input type="text" class="form-control" th:field="${user.name}" placeholder="Enter your Name"/>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="cols-sm-2 control-label">Your Email</label>
+					<p class="warningMess" th:if="${#fields.hasErrors('*')}" th:errors="*{email}">warning message</p>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+							<input type="text" class="form-control" th:field="${user.email}"  placeholder="Enter your Email"/>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="cols-sm-2 control-label">Password</label>
+					<p class="warningMess" th:if="${#fields.hasErrors('*')}" th:errors="*{password}">warning message</p>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+							<input type="password" class="form-control" th:field="${user.password}"  placeholder="Enter your Password"/>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="cols-sm-2 control-label">Contact information</label>
+					<p class="warningMess" th:text="${emptyField}">warning message</p>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-hand-o-right" aria-hidden="true" style="font-size:24px"></i></span>
+							<textarea th:row=5 class="form-control" th:name="contactInformation" placeholder="contact information"></textarea>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="cols-sm-2 control-label">Picture</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+							<input type="file" class="form-control" th:name="userPhoto"  />
+						</div>
+					</div>
+				</div>
+				
+				<div class="">
+					<div class="cols-sm-10">
+						<div class="form-group">
+							<input type="submit" class="btn btn-primary btn-lg btn-block login-button" value="registration"   />
+						</div>
+					</div>
+				</div>
+				<input	type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />		
+			</form>
+		</div>
+		<div class="adv col-md-3">reclama 111</div>
+		<div class="col-md-12 col-sm-12 container-fluid footer">footer</div>
+		
 	</div>
 	
+</div>	
 </body>
 </html>

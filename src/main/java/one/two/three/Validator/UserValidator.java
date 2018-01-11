@@ -6,13 +6,13 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import one.two.three.entity.User;
-import one.two.three.service.IserviceUser;
+import one.two.three.service.IuserService;
 
 @Component
 public class UserValidator implements Validator {
 	
 	@Autowired
-	IserviceUser userService;
+	private IuserService userService;
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -25,10 +25,19 @@ public class UserValidator implements Validator {
 		User user = (User)target;
 		
 		if(user.getName().equals(null) || user.getName().trim().equals("")){
-			errors.rejectValue("name", "User.name.blank", "name is uncorrect");
+			errors.rejectValue("name", "", "this field can not be empty");
 		}
-		if(!checkIdentity(user.getEmail())) {
-			errors.rejectValue("email", "mess from property file", "user with this email is already exist");
+		
+		if(user.getName().trim().length()==1){
+			errors.rejectValue("name", "", "add more characters to yor name ");
+		}
+		
+		if(user.getPassword().trim().length()<4) {
+			errors.rejectValue("password", "", "add more characters to yor password ");
+		}
+		
+		if(checkIdentity(user.getEmail())) {
+			errors.rejectValue("email", "", "user with this email is already exist");
 		}
 		
 	}
@@ -36,9 +45,9 @@ public class UserValidator implements Validator {
 	private boolean checkIdentity(String email) {
 		User user = userService.findByEmail(email);
 		if (user == null) {
-			return true;
-		} else {
 			return false;
+		} else {
+			return true;
 		}
 	}
 }

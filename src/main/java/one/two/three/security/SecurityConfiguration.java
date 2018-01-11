@@ -29,7 +29,7 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	@Qualifier("userDetailServiceImpl")
-	UserDetailsService userDetailsService;
+	private UserDetailsService userDetailsService;
 	
 	@Bean
 	public UserDetailsService userDetailsServiceBean() throws Exception {
@@ -80,16 +80,17 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/", "registration")
+			.antMatchers("/", "registration", "information", "indexPage")
 			.permitAll()
-			.antMatchers("/admin/**")
+			.antMatchers("/admin-*", "/admin")
 			.access("hasRole('ADMIN')")
-			.antMatchers("/userpage/**")
+			.antMatchers("/usr-*")
 			.access("hasRole('USER') or hasRole('ADMIN')")
 			.anyRequest()
 			.authenticated()
 			.and()
 			.formLogin()
+			.failureUrl("/loginFail")
 			.loginPage("/login")
 			.permitAll()
 			.usernameParameter("email")

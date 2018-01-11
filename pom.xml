@@ -12,6 +12,10 @@
 		<servlet.version>3.1.0</servlet.version>
 		<javacode.sorce.versiom>1.8</javacode.sorce.versiom>
 		<javacode.target.versiom>1.8</javacode.target.versiom>
+		<mysql.conector.version>5.1.36</mysql.conector.version>
+		<hibernate.version>5.2.2.Final</hibernate.version>
+		<spring.version>4.3.3.RELEASE</spring.version>
+		<spring.security.version>4.1.3.RELEASE</spring.security.version>
 	</properties>
 	
 	<dependencies>
@@ -27,39 +31,39 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.36</version>
+			<version>${mysql.conector.version}</version>
 		</dependency>
 		
 	<!-- hibernate dependency -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.2.2.Final</version>
+			<version>${hibernate.version}</version>
 		</dependency>
 		
 	<!-- spring framework dependency -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>4.3.3.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.3.3.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>4.3.3.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>4.3.3.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		
 		<dependency>
@@ -85,25 +89,25 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>4.1.3.RELEASE</version>
+			<version>${spring.security.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>4.1.3.RELEASE</version>
+			<version>${spring.security.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			<version>4.1.3.RELEASE</version>
+			<version>${spring.security.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>4.1.3.RELEASE</version>
+			<version>${spring.security.version}</version>
 		</dependency>
 		
 	<!-- mail sending dependency -->
@@ -138,7 +142,7 @@
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 			<version>2.1.2</version>
-			<scope>provided</scope>
+			<!--<scope>provided</scope>-->
 		</dependency>
 		
 	</dependencies>

@@ -14,6 +14,24 @@ public interface IuserDao extends JpaRepository<User, Integer> {
 	public User findByEmail(@Param("email") String email);
 	
 	@Query("SELECT u FROM User u LEFT JOIN FETCH u.products WHERE u.id = (:userid)")
-	public List<User> searchByID(@Param("userid") Integer id);
+	public List<User> searchUserWithProductById(@Param("userid") Integer id);
+	
+	@Query("SELECT u FROM User u LEFT JOIN FETCH u.userInfo WHERE u.id = (:userid)")
+	public User searchUserWithInfoByID(@Param("userid") Integer id);
+	
+	@Query("SELECT u FROM User u LEFT JOIN FETCH u.userInfo WHERE u.name LIKE (:namePattern)")
+	public List<User> searchUserWithInfoBynamePattern(@Param("namePattern") String namePattern);
+	
+	@Query("SELECT u FROM User u LEFT JOIN FETCH u.userInfo WHERE u.name=(:name)")
+	public List<User> searchUserWithInfoByName(@Param("name") String name);
+	
+	@Query("SELECT u FROM User u LEFT JOIN FETCH u.userInfo WHERE u.email = (:email)")
+	public List<User> searchUserWithInfoByEmail(@Param("email") String email);
+	
+	@Query("SELECT u FROM User u LEFT JOIN FETCH u.myComment WHERE u.id=(:userId)")
+	public User oneUserWithComment(@Param("userId") Integer userId);
+	
+	@Query("SELECT u FROM User u LEFT JOIN FETCH u.myBlame WHERE u.id=(:userId)")
+	public User oneUserWithComplain(@Param("userId") Integer userId );
 	
 }

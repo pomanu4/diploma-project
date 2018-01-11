@@ -1,24 +1,64 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns="http://www.w3.org/1999/xhtml">
-<head> 
-	
+<!DOCTYPE html> 
+ <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+ <head> 
      <meta charset="UTF-8"/> 
      <meta name="viewport" 
            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/> 
      <meta http-equiv="X-UA-Compatible" content="ie=edge"/> 
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	 <link rel = "stylesheet" href = "style/bootstrap.min.css">
+	 <link rel="stylesheet" href="style/style.css"/>
      <link rel="stylesheet" href="style/main.css"/>
-     <title>Document</title> 
+     <title></title> 
  </head> 
 <body>
-user product !!!
-<div th:object="${userproducts}" th:each="userProduct : ${userproducts}">
-	<p>**********************************************************</p><br>
-	<a th:text="${userProduct.productName}" th:href="@{'myProd-'+${userProduct.id}}">product name</a>
-	<p>**********************************************************</p>
-</div>
+	<div class="container-fluid ">
+		<div class="row row1">
+			<div class="col-md-3 col-sm-3 navbar-header">
+				<a class="navbar-brand" th:href="@{indexPage}">TheBestWebSite</a>
+			</div>
+			<div class="col-md-7 col-sm-6">
+				<nav>
+					<ul class="nav navbar-nav upperMeny">
+						<li><a th:href="@{usr-userpage}">to user page</a></li>
+						<li><a th:href="@{usr-orderHistory}">my order</a></li>
+						<li><a th:href="@{logout}">log out</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-md-2 col-sm-3 nav navbar-nav ">
+				<a  th:href="@{information}" class="first">about us	</a>
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-md-9 middleBlock">
+				
+				<div class="tableDiv">
+					<table class="table table-bordered">
+						<tr>
+							<th class="smallCellname">NAME</th>
+							<th class="smallCell">PRICE</th>
+							<th class="smallCell">QUANTITY</th>
+							<th class="infoCell">INFORMATION</th>
+							<th class="smallCellname">COMMENT</th>
+						</tr>
+						<tr th:each="userProduct : ${userproducts}">
+							<td class="smallCellname"><a th:text="${userProduct.productName}" th:href="@{'usr-myProd-'+${userProduct.id}}">name</a></td>
+							<td class="smallCell" th:text="${userProduct.price}">price</td>
+							<td class="smallCell" th:classappend="(${userProduct.howMany} == 0) ? 'zero'"  th:text="${userProduct.howMany}">Quantity</td>
+							<td class="infoCell" th:text="${userProduct.about}">information</td>
+							<td class="smallCellname" th:text="(${not #lists.isEmpty(userProduct.comments)}) ? 'some coment there' : ' '" >name</td>
+						</tr>
+					</table>
+				</div>
 
-
-
+			</div>
+			<div class="adv col-md-3">reclama 111</div>
+			<div class="col-md-12 col-sm-12 container-fluid footer">footer</div>
+		</div>
+	</div>
 
 </body>
 </html>

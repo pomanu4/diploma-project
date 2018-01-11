@@ -1,29 +1,83 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head> 
+<!DOCTYPE html> 
+ <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+ <head> 
      <meta charset="UTF-8"/> 
      <meta name="viewport" 
            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/> 
      <meta http-equiv="X-UA-Compatible" content="ie=edge"/> 
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	 <link rel = "stylesheet" href = "style/bootstrap.min.css">
+	 <link rel="stylesheet" href="style/style.css"/>
      <link rel="stylesheet" href="style/main.css"/>
-     <title>Document</title> 
+     <title></title> 
  </head> 
 <body>
+	<div class="container-fluid ">
+		<div class="row row1">
+			<div class="col-md-3 col-sm-3 navbar-header">
+				<a class="navbar-brand" th:href="@{indexPage}">TheBestWebSite</a>
+			</div>
+			<div class="col-md-7 col-sm-6">
+				<nav>
+					<ul class="nav navbar-nav upperMeny">
+						<li><a th:href="@{usr-userpage}">to user page</a></li>
+						<li><a th:href="@{usr-orderHistory}">my order</a></li>
+						<li><a th:href="@{logout}">log out</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-md-2 col-sm-3 nav navbar-nav ">
+				<a  th:href="@{information}" class="first">about us	</a>
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-md-9 middleBlock">
+				
+				<div class="btn-group btn-group buttonDiv">
+					<a th:href="@{usr-sortByName}" class="btn btn-default sort">sort</a>
+					<a th:href="@{usr-sortByPrice}" class="btn btn-default sortPrice">sort</a>
+					<a th:href="@{usr-wachOrderList}" class="btn btn-default">active order</a>
+					<a class="btn btn-default gap">.</a>
+					<a th:href="@{usr-createOrder}" class="btn btn-default">create order</a>
+					<a th:href="@{usr-confirmOrder}" class="btn btn-default">confirm order</a>
+					<a th:href="@{usr-deleteOrder}" class="btn btn-default">delete order</a>
+				</div>
+			
+				<div class="tableDiv">
+					<table class="table table-bordered">
+						<tr>
+							<th class="smallCellname">NAME</th>
+							<th class="smallCell">PRICE</th>
+							<th class="smallCell">QUANTITY</th>
+							<th class="infoCell">INFORMATION</th>
+							<th class="add">Add</th>
+						</tr>
+						<tr th:each="product : ${prodListContainer.pl}" th:classappend="(${product.howMany} == 0) ? 'hideElementWithZero'">
+							<td class="smallCellname"><a th:text="${product.productName}" th:href="@{'usr-product-'+${product.id}}">name</a></td>
+							<td class="smallCell" th:text="${product.price}">price</td>
+							<td class="smallCell" th:text="${product.howMany}" >Quantity</td>
+							<td class="infoCell" th:text="${product.about}" >information</td>
+							<td class="add">
+								<div class="basketForm" th:classappend="(${active}) ? '' : 'hideElementWithZero'">
+									<form action="" th:action="@{usr-toBox}" method="post" >
+										<input type="number" th:min=1 th:max="${product.howMany}" th:step=1 th:name="howmany" />
+										<input type="hidden" th:name="product_id" th:value="${product.id}"/>
+										<input type="submit" value="Add"/>
+										<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+									</form>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
 
-<div th:object="${prodWithPicture}" th:each="product : ${prodWithPicture}">
-	<a th:href="@{'product-'+${product.id}}" th:text="${product.productName}">text</a><br>
-	<form action="" th:action="toBox" method="post">
-		<label>how many u wanna buy?</label>
-		<input th:type="number" th:name="howmany" th:min="1" th:max="${product.howMany}" th:step="1" />
-		<input type="hidden" th:name="product_id" th:value="${product.id}"/>
-		<input type="submit" value="confirm"/>
-		<input	type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-	</form>
-</div>
-<a th:href="@{createOrder}">create an order</a>
-<p>XXXXXXXXXXXXXXXX</p>
-<a th:href="@{confirmOrder}">confirm order</a>*******<a th:href="@{deleteOrder}">delete order</a>
-<p>************************************************</p>
-<a th:href="@{wachOrderList}">inspect my active order list</a>
+			</div>
+			<div class="adv col-md-3">reclama 111</div>
+			<div class="col-md-12 col-sm-12 container-fluid footer">footer</div>
+		</div>
+	</div>
+
 </body>
 </html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html> 
+ <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+ <head> 
+     <meta charset="UTF-8"/> 
+     <meta name="viewport" 
+           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/> 
+     <meta http-equiv="X-UA-Compatible" content="ie=edge"/> 
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	 <link rel = "stylesheet" href = "style/bootstrap.min.css">
+	 <link rel="stylesheet" href="style/style.css"/>
+     <link rel="stylesheet" href="style/main.css"/>
+     <title></title> 
+ </head> 
+<body>
+	<div class="container-fluid ">
+		<div class="row row1">
+			<div class="col-md-3 col-sm-3 navbar-header">
+				<a class="navbar-brand" th:href="@{indexPage}">TheBestWebSite</a>
+			</div>
+			<div class="col-md-7 col-sm-6">
+				<nav>
+					<ul class="nav navbar-nav upperMeny">
+						<li><a th:href="@{usr-userpage}">to user page</a></li>
+						<li><a th:href="@{usr-orderHistory}">my order</a></li>
+						<li><a th:href="@{logout}">log out</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-md-2 col-sm-3 nav navbar-nav ">
+				<a  th:href="@{information}" class="first">about us	</a>
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-md-9 middleBlock">
+			
+				<div class="contentBlock">
+					<div class="mainImg">
+						<img alt="imege" th:src="@{${user.foto}}" class="simpleImage"/>
+					</div>
+					<div class="infoBlock">
+					
+						<div>
+							<div class="userProdInfo info">
+								<span th:text="'NAME : '+${user.user.name}">USER NAME</span>
+							</div>
+							<div class="userProdInfo"></div>
+						</div>
+					
+						<div>
+							<div class="userProdInfo info">
+								<span th:text="'start : '+${user.since}">start date</span>
+							</div>
+							<div class="userProdInfo"></div>
+						</div>	
+					
+					
+						<div>
+							<div class="aboutProduct text">
+								<p th:text="'contact : '+${user.contactInformation}">user contact info</p>
+							</div>
+							<div class="aboutProduct">
+								<button type="button" onclick="showNewContactForm()" >Add new</button>
+							</div>
+						</div>
+						<div id="newContactInfo" class="formBodyInvisible">
+							<form action="" th:action="@{usr-newContact}" method="post">
+								<input type="hidden" th:name="userid" th:value="${user.id}"/>
+								<div>
+									<button type="submit" class="buttonSubmit">Change info</button>
+									<button type="button" onclick="hideNewContactForm()" class="buttonHide">hide form</button>
+								</div>
+								<div>
+									<textarea rows=6 th:name="newContact" class="infoPlace" ></textarea>
+								</div>
+								
+							</form>
+						</div>
+						<div>
+							<div class="userProdInfo">
+								<form action="#" th:action="@{usr-newPhoto}" method="post" enctype="multipart/form-data" class="form-inline"  >
+									<div class="form-group fileInput">
+										<label>Change photo</label>
+										<input type="file" th:name="newPhoto" class="form-control " /> 
+									</div>
+									<input type="hidden" th:name="userid" th:value="${user.id}"/>
+									<button type="submit" class="btn btn-default">add</button>
+									<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+								</form>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+	
+			</div>
+			<div class="adv col-md-3">reclama 111</div>
+			<div class="col-md-12 col-sm-12 container-fluid footer">footer</div>
+		</div>
+	</div>
+<script src="jscript/javaScript.js"></script>
+</body>
+</html>

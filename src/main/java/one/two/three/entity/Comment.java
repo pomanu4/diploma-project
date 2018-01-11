@@ -18,6 +18,9 @@ public class Comment {
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Product productToComent;
+	
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private User user;
 
 	public Comment() {
 	}
@@ -42,12 +45,20 @@ public class Comment {
 		this.comment = comment;
 	}
 
-	public Product getProduct() {
+	public Product getProductToComent() {
 		return productToComent;
 	}
 
-	public void setProduct(Product product) {
-		this.productToComent = product;
+	public void setProductToComent(Product productToComent) {
+		this.productToComent = productToComent;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

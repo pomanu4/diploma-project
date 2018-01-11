@@ -33,7 +33,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 public class MainConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 	
 	@Autowired
-	Environment env;
+	private Environment env;
 
 	// thymelif settings
 
@@ -79,7 +79,7 @@ public class MainConfiguration extends WebMvcConfigurerAdapter implements Applic
 	@Bean
 	public MessageSource messageSource() {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-		messageSource.setBasename("language");
+		messageSource.setBasename("messages");
 		messageSource.setDefaultEncoding("UTF-8");
 
 		return messageSource;
@@ -90,7 +90,11 @@ public class MainConfiguration extends WebMvcConfigurerAdapter implements Applic
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/style/**").addResourceLocations("WEB-INF/static/css/");
+		registry.addResourceHandler("/img/**").addResourceLocations("WEB-INF/images/");
+		registry.addResourceHandler("/jscript/**").addResourceLocations("WEB-INF/js/");
 	}
+	
+	
 
 	// multipart resolver settings
 

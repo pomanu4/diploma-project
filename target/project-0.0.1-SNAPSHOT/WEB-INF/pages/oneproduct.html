@@ -1,35 +1,105 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
-<head> 
+<!DOCTYPE html> 
+ <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+ <head> 
      <meta charset="UTF-8"/> 
      <meta name="viewport" 
            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/> 
      <meta http-equiv="X-UA-Compatible" content="ie=edge"/> 
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	 <link rel = "stylesheet" href = "style/bootstrap.min.css">
+	 <link rel="stylesheet" href="style/style.css"/>
      <link rel="stylesheet" href="style/main.css"/>
-     <title>Document</title> 
+     <title></title> 
  </head> 
 <body>
-	<div th:object="${prod}">
-		<p th:text="${prod.productName}">text</p><br>
-		<p th:text="${prod.howMany}">text</p><br>
-		<p th:text="${prod.about}">text</p><br>
-		<p></p>
-		<p th:text="${path}"></p>
-		<img th:each="path : ${prod.pictures}" alt="" th:src="@{${path.picturePath}}" style="height: 80px; width: 80px" />
-		<div th:each="comment :${prodComent.comments}">
-			<p th:text="${comment.comment}"></p>
+	<div class="container-fluid ">
+		<div class="row row1">
+			<div class="col-md-3 col-sm-3 navbar-header">
+				<a class="navbar-brand" th:href="@{indexPage}">TheBestWebSite</a>
+			</div>
+			<div class="col-md-7 col-sm-6">
+				<nav>
+					<ul class="nav navbar-nav upperMeny">
+						<li><a th:href="@{usr-userpage}">to user page</a></li>
+						<li><a th:href="@{usr-orderHistory}">my order</a></li>
+						<li><a th:href="@{logout}">log out</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-md-2 col-sm-3 nav navbar-nav ">
+				<a  th:href="@{information}" class="first">about us	</a>
+			</div>
 		</div>
-		<form action="" th:action="addComment" method="post">
-			<label>enter your comment</label>
-			<input type="text" th:name="commentText" placeholder="the coment"/>
-			<input type="hidden" th:name="productId" th:value="${prod.id}" />
-			<input type="submit" value="add coment">
-			<input type="hidden"
-				th:name="${_csrf.parameterName}"
-				th:value="${_csrf.token}"/>
-		</form>
+	
+		<div class="row">
+			<div class="col-md-9 middleBlock">
+			
+				<div class="contentBlock">
+				
+					<div class="mainImg">
+						<div class="imgContent">
+							<img th:each="path : ${prodPicture.pictures}" alt="alt" th:src="@{${path.picturePath}}" class="simpleImage"/>
+						</div>			
+						
+						<!-- Left and right controls -->
+						<a class="left carousel-control" href="#myCarousel" >
+							<span class="glyphicon glyphicon-chevron-left"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						
+						<a class="right carousel-control" href="#myCarousel" >
+						<span class="glyphicon glyphicon-chevron-right"></span>
+						<span class="sr-only">Next</span>
+						</a>
+					</div>
+					
+					
+					<div class="infoBlock">
+						<div class="userProdInfo infoProd">
+							<span th:text="${prodOwner.productName}">product name</span>
+						</div>
+						<div class="userProdInfo infoProd">
+							<span th:text="${prodOwner.howMany}">product quantity</span>
+						</div>
+						<div class="userProdInfo infoProd">
+							<span th:text="${prodOwner.price}">product price</span>
+						</div>
+						<div class="userProdInfo infoProd">
+							<span th:text="${prodOwner.owner.name}">product owner name</span>
+						</div>
+						<div class="userProdInfo infoProd">
+							<span th:text="${prodOwner.owner.userInfo.contactInformation}">product owner contact info</span>
+						</div>
+					</div>
+					<div >
+						<div class="comment">
+							<button onclick="showCommentForm()" type="button"  class="btn btn-default" >Add coment</button>
+						</div>
+						<div id="comentForm" class="comentFormPosition" >
+							<form action="" th:action="usr-addComment" method="post">
+								<input type="hidden" th:name="productId" th:value="${prodOwner.id}"  />
+								<div>
+									<button type="submit" class="buttonSubmit">Add comment</button>
+									<button onclick="hideCommentForm()" type="button" class="buttonHide">hide form</button>
+								</div>
+								<div>
+									<textarea rows=6 th:name="commentText" placeholder="the coment" class="infoPlace" ></textarea>
+								</div>
+							</form>
+					</div>
+					</div>
+					<div th:each="coment : ${prodComent.comments}" class="comentText">
+						<p th:text="${coment.comment}" class="comentText">coment</p>
+						<span th:text="'comment added by : '+${coment.user.name}" class="comentText">author</span>
+					</div>
+				</div>
+				
+			</div>
+			<div class="adv col-md-3">reclama 111</div>
+			<div class="col-md-12 col-sm-12 container-fluid footer">footer</div>
+		</div>
 	</div>
-
-
+	<script src="jscript/javaScript.js"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@ import one.two.three.service.IproductService;
 public class ProductOwnerChecker {
 	
 	@Autowired
-	IproductService prodServoce;
+	private IproductService prodServoce;
 	
 	public boolean checkOwner(int owner_id, int product_id) {
 		Product product = prodServoce.productWithOwnerById(product_id);

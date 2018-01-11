@@ -1,0 +1,165 @@
+<!DOCTYPE html> 
+ <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+ <head> 
+     <meta charset="UTF-8"/> 
+     <meta name="viewport" 
+           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/> 
+     <meta http-equiv="X-UA-Compatible" content="ie=edge"/> 
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	 <link rel = "stylesheet" href = "style/bootstrap.min.css">
+	 <link rel="stylesheet" href="style/style.css"/>
+     <link rel="stylesheet" href="style/main.css"/>
+     <title></title> 
+ </head> 
+<body>
+	<div class="container-fluid ">
+		<div class="row row1">
+			<div class="col-md-3 col-sm-3 navbar-header">
+				<a class="navbar-brand" th:href="@{indexPage}">TheBestWebSite</a>
+			</div>
+			<div class="col-md-7 col-sm-6">
+				<nav>
+					<ul class="nav navbar-nav upperMeny">
+						<li><a th:href="@{admin}">admin</a></li>
+						<li><a th:href="@{logout}">log out</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-md-2 col-sm-3 nav navbar-nav ">
+				<a  th:href="@{information}" class="first">about us	</a>
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-md-9 middleBlock">
+			
+				<div class="contentBlock">
+					<div class="mainImg" >
+						<img alt="" th:src="@{${user.userInfo.foto}}" class="simpleImage" >
+					</div>
+					<div class="infoBlock">
+						
+						<div>
+							<div class="userProdInfo info">
+								<span th:text="'date of registration : '+${user.userInfo.since}">date of start</span>
+							</div>
+						</div>
+						
+						<div>
+							<div class="userProdInfo info">
+								<span th:text="'user id : '+${user.id}">USER ID</span>
+							</div>
+						</div>
+						
+						<div>
+							<div class="userProdInfo info">
+								<span th:text="'user name: '+${user.name}">USER NAME</span>
+							</div>
+						</div>
+					
+						<div>
+							<div class="userProdInfo info">
+								<span th:text="'user email : '+${user.email}">USER EMAIL</span>
+							</div>
+							<div class="userProdInfo">
+								<form action="" th:action="@{admin-setnewImail}" method="post">
+									<input type="hidden" th:name="userId" th:value="${user.id}" />
+									<input type="text" th:name="newImail" placeholder="new email"/>
+									<input type="submit" value="set email" />
+									<input	type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+								</form>
+							</div>
+						</div>
+
+						<div>
+							<div class="userProdInfo info">
+								<span th:text="'user password : coded string'">USER password</span>
+							</div>
+							<div class="userProdInfo">
+								<form action="" th:action="@{admin-setPassword}" method="post">
+									<input type="hidden" th:name="userId" th:value="${user.id}" />
+									<input type="text" th:name="newPassword" placeholder="new password"/>
+									<input type="submit" value="set password" />
+									<input	type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+								</form>
+							</div>
+						</div>
+						
+						<div>
+							<div class="userProdInfo info">
+								<span th:text="(${user.role.toString() == 'ROLE_USER'}) ? 'user role : USER':'user role : ADMIN'">USER ROLE</span>
+							</div>
+							<div class="userProdInfo">
+								<form action="" th:action="@{admin-setRole}" method="post">
+									<input type="hidden" th:name="userId" th:value="${user.id}" />
+									<input type="radio" th:name="userRole" th:value="ROLE_USER" />USER
+									<input type="radio" th:name="userRole" th:value="ROLE_ADMIN"/>ADMIN
+									<input type="submit" value="set role" />
+									<input	type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+								</form>
+							</div>
+						</div>
+						
+						<div>
+							<div class="userProdInfo info">
+								<span th:text="(${user.accountNonLocked == true}) ? 'account status : ACTIVE' : 'account status : LOCKED'">ACCOUNT STATUS</span>
+							</div>
+							<div class="userProdInfo">
+								<form action="" th:action="@{admin-blockAccount}" method="post">
+									<input type="hidden" th:name="userId" th:value="${user.id}" />
+									<input type="radio" th:name="status" th:value="true" />ACTIVE
+									<input type="radio" th:name="status" th:value="false"/>BLOCKED
+									<input type="submit" value="set status" />
+									<input	type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+								</form>
+							</div>
+						</div>
+					
+					
+						<div>
+							<div class="aboutProduct text">
+								<p th:text="'user contact info : '+${user.userInfo.contactInformation}">user contact info</p>
+							</div>
+						</div>
+						<div>
+							<div class="userProdInfo">
+								<form action="#" th:action="@{admin-setDefoultPhoto}" method="post" class="form-inline"  >
+									<div class="form-group adminPictureChange">
+										<label>Set default photo</label> 
+									</div>
+									<input type="hidden" th:name="userId" th:value="${user.id}" />
+									<button type="submit" class="btn btn-default">Change</button>
+									<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+								</form>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<div>
+					<div  >
+						<form action="" th:action="@{admin-adminUserProducts}" method="get" class="adminForm">
+							<input type="hidden" th:name="userId" th:value="${user.id}" />
+							<input type="submit" value="inspect products" class="btn-group btn-group-justified " style="background-color : white" />
+						</form>
+						<form action="" th:action="@{admin-adminUserHistory}" method="get" class="adminForm">
+							<input type="hidden" th:name="userId" th:value="${user.id}" />
+							<input type="submit" value="inspect history" class="btn-group btn-group-justified " style="background-color : white"/>
+						</form>
+						<form action="" th:action="@{admin-adminUserComments}" method="get" class="adminForm">
+							<input type="hidden" th:name="userId" th:value="${user.id}" />
+							<input type="submit" value="inspect comments" class="btn-group btn-group-justified " style="background-color : white"/>
+						</form>
+					</div> 
+				</div>
+				
+				
+	
+			</div>
+			<div class="adv col-md-3">reclama 111</div>
+			<div class="col-md-12 col-sm-12 container-fluid footer">footer</div>
+		</div>
+	</div>
+
+</body>
+</html>

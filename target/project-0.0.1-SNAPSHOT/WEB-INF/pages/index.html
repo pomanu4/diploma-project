@@ -1,18 +1,59 @@
-<!doctype html> 
+<!DOCTYPE html> 
  <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
  <head> 
      <meta charset="UTF-8"/> 
      <meta name="viewport" 
            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/> 
      <meta http-equiv="X-UA-Compatible" content="ie=edge"/> 
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	 <link rel = "stylesheet" href = "style/bootstrap.min.css">
+	 <link rel="stylesheet" href="style/style.css"/>
      <link rel="stylesheet" href="style/main.css"/>
-     <title>Document</title> 
+     <title>Main page</title> 
  </head> 
 <body>
-	<h3>index page</h3><br>
-	<a href="userpage">to user page</a><br>
-	<p>you can <a href="login">login there</a></p><br>
-	<p>if you want to use  a website  please <a th:href="@{registration}">click on registration reference</a></p>
+	<div class="container-fluid" th:with="lang=((${multiLang} == null) ? 'eng' : ${multiLang})">
+		<div class="row row1">
+			<div class="col-md-3 col-sm-3 navbar-header">
+				<a th:text="#{'sitename'+${lang}}" class="navbar-brand" th:href="@{indexPage}">TheBestWebSite</a>
+			</div>
+		<div class="col-md-7 col-sm-6">
+			<nav>
+				<ul class="nav navbar-nav upperMeny">
+					<li><a th:text="#{'registration'+${lang}}" th:href="@{registration}">registration</a></li>
+					<li><a th:text="#{'login'+${lang}}" th:href="@{login}">to login page</a></li>
+					<li><a th:text="#{'user'+${lang}}" th:href="@{usr-userpage}">to user page</a></li>
+					<li><a th:text="#{'logout'+${lang}}" th:href="@{logout}">log out</a></li>
+					<li id="lang"><a th:text="#{'language'+${lang}}" href="#">language</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="col-md-2 col-sm-3 nav navbar-nav ">
+			<a th:text="#{'information'+${lang}}" th:href="@{information}" class="first">about us	</a>
+		</div>
+	</div>
 	
+		<div class="row">
+			<div class="col-md-9 middleBlock">
+				<div class="multiLangInvisible" id="text">
+					<form action="#" th:action="@{translate}" method="get">
+						<input type="radio" th:name="language" value="eng" checked />eng<br>
+						<input type="radio" th:name="language" value="ukr" />ukr<br>
+						<input type="submit" value="Ok" />
+					</form>
+				</div>
+			
+			
+				<h1 th:text="#{'welcome'+${lang}}">welcome dear user !!!</h1>
+				<h2 th:text="#{'start'+${lang}}">to start you nedd :</h2>
+				<h3 th:text="#{'fillreg'+${lang}}">fill the registration form</h3>
+				<h3 th:text="#{'userpage'+${lang}}">go to user page</h3>
+				<h3 th:text="#{'activity'+${lang}}">buy or sell ewerythink you want</h3>
+			</div>
+			<div class="adv col-md-3">reclama 111</div>
+			<div class="col-md-12 col-sm-12 container-fluid footer">footer</div>
+		</div>
+	</div>
+	<script src="jscript/javaScript.js"></script>
 </body>
 </html>

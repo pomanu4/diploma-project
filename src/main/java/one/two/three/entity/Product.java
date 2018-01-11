@@ -1,10 +1,7 @@
 package one.two.three.entity;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,20 +9,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+	
+	@NotBlank(message="this field can not be empty")
 	private String productName;
-
+	
+	@NotNull(message="this field can not be empty")
 	private int howMany;
-
+	
+	@NotNull(message="this field can not be empty")
 	private int price;
 	
 	private String about;
@@ -46,10 +48,11 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(String productName, int howMany, int prise) {
+	public Product(String productName, int howMany, int prise, String about) {
 		this.productName = productName;
 		this.howMany = howMany;
 		this.price = prise;
+		this.about = about;
 	}
 
 	public int getId() {
@@ -122,7 +125,7 @@ public class Product {
 	}
 	
 	public void addComment(Comment comment) {
-		comment.setProduct(this);
+		comment.setProductToComent(this);
 		this.getComments().add(comment);
 	}
 	

@@ -14,14 +14,16 @@ import org.springframework.web.multipart.MultipartFile;
 public class DefoultPhotoHandler {
 	
 	@Autowired
-	Environment env;
+	private Environment env;
 	
-	public File usrDefoultPhoto(MultipartFile file) {
+	public String usrDefoultPhoto(MultipartFile file) {
 		String path = env.getProperty("userphoto.sorce.folder");
+		String webFilePath = env.getProperty("userphoto.web.sorce") + file.getOriginalFilename();
 		File userPhoto;
 		if (file.getSize() == 0) {
 			userPhoto = new File(path + File.separator + "simple.png");
-			return userPhoto;
+			String webFile = env.getProperty("userphoto.web.sorce") + "simple.png";
+			return webFile;
 		} else {
 			userPhoto = new File(path + File.separator + file.getOriginalFilename());
 			try {
@@ -29,16 +31,18 @@ public class DefoultPhotoHandler {
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
-			return userPhoto;
+			return webFilePath;
 		}
 	}
 	
-	public File productDefoultPhoto(MultipartFile file) {
+	public String productDefoultPhoto(MultipartFile file) {
 		String path = env.getProperty("product.photo.path");
+		String webFilePath = env.getProperty("product.web.path") + file.getOriginalFilename();
 		File productPhoto;
 		if (file.getSize() == 0) {
 			productPhoto = new File(path + File.separator + "uncnowproduct.png");
-			return productPhoto;
+			String filePath = env.getProperty("product.web.path") + "noimage.png";
+			return filePath;
 		} else {
 			productPhoto = new File(path + File.separator + file.getOriginalFilename());
 			try {
@@ -46,8 +50,18 @@ public class DefoultPhotoHandler {
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
-			return productPhoto;
+			return webFilePath;
 		}
+	}
+	
+	public String defaultPhotoPath() {
+		String path = env.getProperty("userphoto.web.sorce") + "simple.png";
+		return path;
+	}
+	
+	public String productDefaultPhotoPath() {
+		String path = env.getProperty("product.web.path") + "noimage.png";
+		return path;
 	}
 
 }

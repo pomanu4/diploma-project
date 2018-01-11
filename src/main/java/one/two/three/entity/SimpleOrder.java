@@ -20,7 +20,7 @@ public class SimpleOrder {
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private OrderDetails orderDetails;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private Product product;
 
 	public SimpleOrder() {

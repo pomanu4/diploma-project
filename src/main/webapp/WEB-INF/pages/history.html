@@ -1,21 +1,58 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
-<head> 
+<!doctype html> 
+ <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+ <head> 
      <meta charset="UTF-8"/> 
      <meta name="viewport" 
            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/> 
      <meta http-equiv="X-UA-Compatible" content="ie=edge"/> 
+	 <link rel = "stylesheet" href = "style/bootstrap.min.css">
+	 <link rel="stylesheet" href="style/style.css"/>
      <link rel="stylesheet" href="style/main.css"/>
-     <title>Document</title> 
+     <title></title> 
  </head> 
 <body>
-	this is history page
+	<div class="container-fluid ">
+		<div class="row row1">
+			<div class="col-md-3 col-sm-3 navbar-header">
+				<a class="navbar-brand" th:href="@{indexPage}">TheBestWebSite</a>
+			</div>
+			<div class="col-md-7 col-sm-6">
+				<nav>
+					<ul class="nav navbar-nav upperMeny">
+						<li><a th:href="@{usr-userpage}">to user page</a></li>
+						<li><a th:href="@{logout}">log out</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-md-2 col-sm-3 nav navbar-nav ">
+				<a th:href="@{information}" class="first">about us	</a>
+			</div>
+		</div>
 	
-	<div th:object="${mapa}" th:each="item : ${mapa}" >
-		<a th:href="@{'order-' + ${item.value.id}}" th:with="mapkey=${item.key}" th:text="${mapkey}">reference</a>
-		<p th:text="${item.value.dateOfOrder}">text</p>
-		
+		<div class="row">
+			<div class="col-md-9 middleBlock">
+			
+			<div class="tableDiv">
+					<table class="table table-bordered">
+						<tr>
+							<th class="tableArea" >DATE OF ORDER</th>
+							<th class="tableArea" >ORDER STATUS</th>
+						</tr>
+						<tr  th:each="item : ${mapa}" class="tableArea">
+							<td class="tableArea">
+								<a th:with="mapkey=${item.key}" th:text="${mapkey}" th:href="@{'usr-order-' + ${item.value.id}}">date</a>
+							</td>
+							<td th:text="${item.value.status}"  class="tableArea">status</td>
+						</tr>
+					</table>
+				</div>
+
+			</div>
+			<div class="adv col-md-3">reclama 111</div>
+			<div class="col-md-12 col-sm-12 container-fluid footer">footer</div>
+		</div>
 	</div>
+	
 	
 </body>
 </html>

@@ -1,4 +1,350 @@
 @charset "UTF-8";
-*{
-	background: yellow;
+body{
+	background-color: #ffff99;
 }
+div {
+	border: 1px solid black;
+}
+.first {
+	display: block;
+	width: 120px;
+	height: 40px;
+	font-size: 20px;
+	margin-left: 30px;
+	padding-left: 30px;
+	margin-right: 30px;
+	margin-top: 10px;
+	text-decoration: none;
+}
+.first:hover {
+	text-decoration: none;
+}
+.upperMeny {
+	font-size: 20px;
+}
+.middleBlock {
+	height: 820px;
+	
+}
+.adv {
+	border: 1px solid red;
+	height: 820px;
+	padding-top: 15px;
+	padding-bottom: 20px;
+}
+ .regForm{
+	width: 600px;
+	margin-left: 80px;
+	
+}
+.control-label {
+	font-size: 22px;
+}
+.warningMess{
+	color: red;
+}
+.comentDenied {
+	text-align: center;
+	margin-top: 50px;
+}
+.logForm {
+	width: 500px;
+	margin-left: 150px;
+	margin-top: 100px;
+}
+.tableDiv {
+	margin-top: 5px;
+}
+.smallCell {
+	width: 100px;
+}
+.smallCellname, .smallCell, .infoCell {
+	background-color: #e6e6e6;
+}
+.smallCellname {
+	width: 150px;
+}
+.buttonDiv {
+	margin-top: 30px;
+}
+.basketForm input {
+	width: 50px;
+}
+.basketForm {
+	width: 50px;
+}
+.add {
+	background-color: #e6e6e6;
+	width: 80px;
+}
+.sort {
+	width: 150px;
+}
+.sortPrice {
+	width: 100px;
+}
+.gap {
+	width: 255px;
+}
+.zero {
+	background-color: #ff4d4d;
+}
+.contentBlock {
+	width: 100%;
+	padding-top: 30px;
+}
+.mainImg {
+	height: 300px;
+	width: 300px;
+	display: inline-block;
+	float: left;
+	margin-right: 15px;
+	background-color: white;
+	overflow: hidden;
+	position: relative;
+}
+.simpleImage {
+	height: 300px;
+	width: 300px;
+}
+.imgContent {
+	position: absolute;
+}
+.infoBlock {
+	height: 300px;
+}
+.comment {
+	display: inline-block;
+}
+.area {
+	width: 250px;
+	background-color: white;
+}
+.comentText {
+	background-color: white;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+.userProdInfo {
+	display: inline-block;
+}
+.info {
+	width: 30%;
+	text-align: left;
+	background-color: white;
+}
+.info span {
+	background-color: white;
+}
+.aboutProduct {
+	display: inline-block;
+	
+}
+.text {
+	background-color: white;
+	width: 40%;
+}
+.text p {
+	background-color: white;
+}
+.formBody {
+	background-color: white;
+	height: 150px;
+	width: 400px;
+	position: absolute;
+	right: 10px;
+	bottom: 50px;
+}
+.buttonSubmit {
+	width: 78%;
+	display: inline-block;
+	background-color: #d9d9d9;
+}
+.buttonHide {
+	width: 20%;
+	display: inline-block;
+	background-color: white;
+}
+.infoPlace {
+	background-color: white;
+	width: 100%;
+	height: 70%;
+}
+.fileInput {
+	width: 87%;
+}
+.form-inline {
+	width: 500px;
+}
+.adminPictureChange {
+	width: 40%;
+}
+.adminForm {
+	display: inline-block;
+	width: 30%;
+	background-color: white;
+}
+.inputField {
+	width: 80%;
+	background-color: white;
+}
+.tableArea {
+	background-color: white;
+}
+.infoProd {
+	width: 51%;
+	text-align: left;
+	background-color: white;
+}
+.infoProd span {
+	background-color: white;
+}
+.addProductForm {
+	width:400px;
+	font-size: 16px;
+	display: inline-block;
+	float: left;
+	position: absolute;
+	top: 40px;
+	right: 300px;
+}
+.addProductForminvisible {
+	width:400px;
+	font-size: 16px;
+	display: none;
+	float: left;
+	position: absolute;
+	top: 40px;
+	right: 300px;
+}
+.addcomplainForm {
+	width:400px;
+	font-size: 16px;
+	display: inline-block;
+	float: left;
+	position: absolute;
+	top: 40px;
+	right: 300px;
+}
+.addcomplainFormInvisible {
+	width:400px;
+	font-size: 16px;
+	display: none;
+	float: left;
+	position: absolute;
+	top: 40px;
+	right: 300px;
+}
+.findProductByPattern {
+	width:400px;
+	font-size: 16px;
+	display: inline-block;
+	float: left;
+	position: absolute;
+	top: 40px;
+	right: 300px;
+}
+.findProductByPatternInvisible {
+	width:400px;
+	font-size: 16px;
+	display: none;
+	float: left;
+	position: absolute;
+	top: 40px;
+	right: 300px;
+}
+.comentFormPosition {
+	background-color: white;
+	height: 150px;
+	width: 400px;
+	position: absolute;
+	left: 200px;
+	display: none;
+}
+.vivsibility {
+	background-color: white;
+	height: 150px;
+	width: 400px;
+	position: absolute;
+	left: 200px;
+	display: block;
+}
+.formBodyVisivle {
+	background-color: white;
+	height: 150px;
+	width: 400px;
+	position: absolute;
+	left: 280px;
+	top: 100px;
+	display: block;
+}
+.formBodyInvisible {
+	background-color: white;
+	height: 150px;
+	width: 400px;
+	position: absolute;
+	left: 280px;
+	top: 100px;
+	display: none;
+}
+.userNewProductInfo {
+	background-color: white;
+	height: 150px;
+	width: 400px;
+	position: absolute;
+	left: 280px;
+	top: 100px;
+	display: block;
+}
+.userNewProductInfoInvisible {
+	background-color: white;
+	height: 150px;
+	width: 400px;
+	position: absolute;
+	left: 280px;
+	top: 100px;
+	display: none;
+}
+.multiLangVisible {
+	height: 80px;
+	width: 105px;
+	background-color: #fff2e6;
+	position: absolute;
+}
+.multiLangInvisible {
+	height: 80px;
+	width: 105px;
+	background-color: #fff2e6;
+	position: absolute;
+	right: 0px;
+	display: none;
+}
+.hideElementWithZero {
+	display: none;
+}
+.simpleImageAndForm {
+	height: 270px;
+	width: 300px;
+}
+.inputButton {
+	margin-left: 60px;
+	width: 120px;
+}
+.visible {
+	display: block;
+}
+.noActivOrder {
+	background-color: white;
+	width: 100%;
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+

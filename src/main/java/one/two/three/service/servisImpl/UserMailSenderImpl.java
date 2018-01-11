@@ -19,9 +19,9 @@ import one.two.three.service.IuserMailSender;
 public class UserMailSenderImpl implements IuserMailSender {
 	
 	@Autowired
-	Environment env;
+	private Environment env;
 	@Autowired
-	JavaMailSender sender;
+	private JavaMailSender sender;
 	
 
 	@Override

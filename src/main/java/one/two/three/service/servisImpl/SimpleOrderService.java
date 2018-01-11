@@ -1,5 +1,7 @@
 package one.two.three.service.servisImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +12,6 @@ import one.two.three.entity.Product;
 import one.two.three.entity.SimpleOrder;
 import one.two.three.service.IorderDetail;
 import one.two.three.service.IproductService;
-import one.two.three.service.IserviceUser;
 import one.two.three.service.IsimpleOrderService;
 
 @Service
@@ -18,13 +19,11 @@ import one.two.three.service.IsimpleOrderService;
 public class SimpleOrderService implements IsimpleOrderService {
 	
 	@Autowired
-	IsimpleOrderDAO soDAO;
+	private IsimpleOrderDAO soDAO;
 	@Autowired
-	IproductService prodService;
+	private IproductService prodService;
 	@Autowired
-	IserviceUser userService;
-	@Autowired
-	IorderDetail ordDetService;
+	private IorderDetail ordDetService;
 
 	@Override
 	public void saveSimpleOrder(SimpleOrder simpleOrder) {
@@ -47,6 +46,12 @@ public class SimpleOrderService implements IsimpleOrderService {
 		simpleOrder.setProduct(null);
 		simpleOrder.setOrderDetails(null);
 		soDAO.delete(simpleOrder);
+	}
+
+	@Override
+	public List<SimpleOrder> findByorderDetailsId(int ordDetId) {
+		List<SimpleOrder> soList = soDAO.findOneByorderDetailsId(ordDetId);
+		return soList;
 	}
 	
 	
