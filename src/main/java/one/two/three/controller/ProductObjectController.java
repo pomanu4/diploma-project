@@ -76,24 +76,28 @@ public class ProductObjectController {
 		
 		return "userProductDetails";
 	}
-	
-	@RequestMapping(value = "usr-myProd-{id}", method = RequestMethod.GET)
-	public String userProductByID(Model model, @PathVariable("id") int id) {
-		Product productANDcoments = productService.oneProdWithCommentandComUser(id);
-		Product productANDpictures = productService.findByIdWithPicture(id);
-		boolean val = productANDpictures.getPictures().isEmpty();
-		model.addAttribute("isEmty", val);
+		
+	@RequestMapping(value = "usr-changeName", method = RequestMethod.GET)
+	public String setNewProductName(Model model, @RequestParam("prodid") int prodId, @RequestParam("prodName") String newName) {
+		productService.setNewProductName(newName, prodId);
+		Product productANDcoments = productService.oneProdWithCommentandComUser(prodId);
+		Product productANDpictures = productService.findByIdWithPicture(prodId);
 		model.addAttribute("productWithComents", productANDcoments);
 		model.addAttribute("productWithPictures", productANDpictures);
 		
 		return "userProductDetails";
 	}
 	
-	@RequestMapping(value = "usr-changeName", method = RequestMethod.GET)
-	public String setNewProductName(Model model, @RequestParam("prodid") int prodId, @RequestParam("prodName") String newName) {
-		productService.setNewProductName(newName, prodId);
-		Product productANDcoments = productService.oneProdWithCommentandComUser(prodId);
-		Product productANDpictures = productService.findByIdWithPicture(prodId);
+	@RequestMapping(value = "usr-myProd-{id}", method = RequestMethod.GET)
+	public String userProductByID(Model model, @PathVariable("id") int id) {
+		Product productWithOwner = productService.productWithOwnerById(id);
+		if(productWithOwner.getOwner().getId() != thisUserId()) {
+			return "redirect:usr-userpage";
+		}
+		Product productANDcoments = productService.oneProdWithCommentandComUser(id);
+		Product productANDpictures = productService.findByIdWithPicture(id);
+		boolean val = productANDpictures.getPictures().isEmpty();
+		model.addAttribute("isEmty", val);
 		model.addAttribute("productWithComents", productANDcoments);
 		model.addAttribute("productWithPictures", productANDpictures);
 		
