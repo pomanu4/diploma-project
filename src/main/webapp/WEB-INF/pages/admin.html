@@ -40,7 +40,7 @@
 					<form action="#" th:action="@{admin-findUserById}" method="get" class="form-inline" >
 						<div class="form-group inputField">
 							<label>find user by id</label>
-							<input type="number" th:name="userId"  />
+							<input type="number" th:min="1" th:name="userId"  />
 						</div>
 						<button type="submit" class="btn btn-default">Search</button>
 					</form> 

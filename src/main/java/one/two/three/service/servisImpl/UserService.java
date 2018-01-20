@@ -86,14 +86,19 @@ public class UserService implements IuserService, UserDetailsService{
 
 	@Override
 	public User oneUserWithInfo(int usr_id) {
-		User user = userDao.searchUserWithInfoByID(usr_id);
+		User user = null;
+		if (userDao.searchUserWithInfoByID(usr_id).size() == 0) {
+			return user;
+		}
+		user = userDao.searchUserWithInfoByID(usr_id).get(0);
+		
 		return user;
 	}
 
 	@Override
 	public void setDefoultPhoto(int user_id) {
 		String defoultPhoto = DPH.defaultPhotoPath();
-		User user = userDao.searchUserWithInfoByID(user_id);
+		User user = userDao.searchUserWithInfoByID(user_id).get(0);
 		user.getUserInfo().setFoto(defoultPhoto);
 		userDao.save(user);
 	}

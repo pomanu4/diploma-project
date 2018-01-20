@@ -1,7 +1,7 @@
 package one.two.three.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +39,10 @@ public class UserObjectController {
 	@RequestMapping(value = "admin-findUserById", method = RequestMethod.GET)
 	public String adminFindUserById(@RequestParam("userId") int user_id, Model model) {
 		User user = userService.oneUserWithInfo(user_id);
-		model.addAttribute("user", user);
-		return "adminUserDetail";
+		List<User> userList = new ArrayList<>();
+		userList.add(user);
+		model.addAttribute("userlist", userList);
+		return "uselist";
 	}
 	
 	@RequestMapping(value = "admin-user-{id}", method = RequestMethod.GET)
@@ -54,21 +56,21 @@ public class UserObjectController {
 	public String adminFindUserByName(@RequestParam("userName") String user_name, Model model) {
 		List<User> userList = userService.findUserByName(user_name);
 		model.addAttribute("userlist", userList);
-		return "redirect:admin-adminAllUsers";
+		return "uselist";
 	}
 	
 	@RequestMapping(value = "admin-findUserByNamePattern", method = RequestMethod.GET)
 	public String adminFindUserByNamePattern(@RequestParam("userName") String namePattern, Model model) {
 		List<User> userList = userService.findUserByNamePattern(namePattern);
 		model.addAttribute("userlist", userList);
-		return "redirect:admin-adminAllUsers";
+		return "uselist";
 	}
 	
 	@RequestMapping(value = "admin-findUserByimail", method = RequestMethod.GET)
 	public String adminFindUserByEmail(@RequestParam("userEmail") String email, Model model) {
 		List<User> userList = userService.getUserWithInfoByEmail(email);
 		model.addAttribute("userlist", userList);
-		return "redirect:admin-adminAllUsers";
+		return "uselist";
 	}
 	
 	@RequestMapping(value = "admin-adminUserDetails-{id}", method = RequestMethod.GET)

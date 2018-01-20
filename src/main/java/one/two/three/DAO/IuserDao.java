@@ -17,7 +17,7 @@ public interface IuserDao extends JpaRepository<User, Integer> {
 	public List<User> searchUserWithProductById(@Param("userid") Integer id);
 	
 	@Query("SELECT u FROM User u LEFT JOIN FETCH u.userInfo WHERE u.id = (:userid)")
-	public User searchUserWithInfoByID(@Param("userid") Integer id);
+	public List<User> searchUserWithInfoByID(@Param("userid") Integer id);
 	
 	@Query("SELECT u FROM User u LEFT JOIN FETCH u.userInfo WHERE u.name LIKE (:namePattern)")
 	public List<User> searchUserWithInfoBynamePattern(@Param("namePattern") String namePattern);
