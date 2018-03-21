@@ -1,7 +1,10 @@
 package one.two.three.entity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,7 +40,7 @@ public class Product {
 	private User owner;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "productToComent")
-	private List<Comment> comments = new ArrayList<>();
+	private Set<Comment> comments = new HashSet<>();
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "productToShow")
 	private List<ProductPicture> pictures = new ArrayList<>();
@@ -95,11 +98,11 @@ public class Product {
 		this.about = about;
 	}
 
-	public List<Comment> getComments() {
+	public Set<Comment> getComments() {
 		return comments;
 	}
 
-	public void setComments(List<Comment> comments) {
+	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
 	}
 

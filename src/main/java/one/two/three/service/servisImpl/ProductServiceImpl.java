@@ -34,6 +34,17 @@ public class ProductServiceImpl implements IproductService {
 	private DefoultPhotoHandler DPH;
 	@Autowired
 	private Environment env;
+	
+	
+	
+	
+
+	@Override
+	public Product productWithAllInfo(int podId) {
+		Product product = productDAO.productWithAllFields(podId);
+		
+		return product;
+	}
 
 	@Override
 	public void saveProduct(Product product) {
@@ -53,11 +64,18 @@ public class ProductServiceImpl implements IproductService {
 		productDAO.save(product);
 	}
 
+	
+	/////////
 	@Override
 	public Product findByIdWithPicture(int id) {
 		Product product = productDAO.oneProductWithPicture(id);
 		return product;
 	}
+	///////
+	
+	
+	
+	
 
 	@Override
 	public Product findByIdWithComment(int id) {
@@ -96,16 +114,31 @@ public class ProductServiceImpl implements IproductService {
 		productToDB(product, owner_id);
 	}
 
+	
+	
+	////////////
 	@Override
 	public Product productWithOwnerById(int id) {
 		return productDAO.productWithOwnerById(id);
 	}
-
+	/////////
+	
+	
+	
+	
+	////////////
 	@Override
 	public Product oneProdWithCommentandComUser(int product_id) {
 		Product product = productDAO.oneProductWithCommentandComUser(product_id);
 		return product;
 	}
+	////////////
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public void addProductQantity(int prod_id, int newQantity) {

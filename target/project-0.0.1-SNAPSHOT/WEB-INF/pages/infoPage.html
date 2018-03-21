@@ -19,12 +19,12 @@
 			<div class="col-md-7 col-sm-6">
 				<nav>
 					<ul class="nav navbar-nav upperMeny">
-						<li><a th:text="#{'registration'+${lang}}" th:href="@{registration}">registration</a></li>
-						<li><a th:text="#{'login'+${lang}}" th:href="@{login}">to login page</a></li>
-						<li><a th:text="#{'user'+${lang}}" th:href="@{userpage}">to user page</a></li>
-						<li><a th:text="#{'logout'+${lang}}" th:href="@{logout}">log out</a></li>
-						<li><a th:text="#{'language'+${lang}}" href="#">language</a></li>
-					</ul>
+					<li><a th:text="#{'registration'+${lang}}" th:href="@{registration}">registration</a></li>
+					<li><a th:text="#{'login'+${lang}}" th:href="@{login}">to login page</a></li>
+					<li><a th:text="#{'user'+${lang}}" th:href="@{usr-userpage}">to user page</a></li>
+					<li><a th:text="#{'logout'+${lang}}" th:href="@{logout}">log out</a></li>
+					<li id="lang"><a th:text="#{'language'+${lang}}" href="#">language</a></li>
+				</ul>
 				</nav>
 			</div>
 			<div class="col-md-2 col-sm-3 nav navbar-nav ">

@@ -34,4 +34,5 @@ public interface IuserDao extends JpaRepository<User, Integer> {
 	@Query("SELECT u FROM User u LEFT JOIN FETCH u.myBlame WHERE u.id=(:userId)")
 	public User oneUserWithComplain(@Param("userId") Integer userId );
 	
+	
 }

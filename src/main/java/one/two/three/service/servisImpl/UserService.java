@@ -33,6 +33,8 @@ public class UserService implements IuserService, UserDetailsService{
 	private DefoultPhotoHandler DPH;
 	@Autowired
 	private IuserMailSender sender;
+	
+	
 
 	@Override
 	public User findByEmail(String email) {
@@ -40,6 +42,8 @@ public class UserService implements IuserService, UserDetailsService{
 		
 		return user;
 	}
+
+	
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

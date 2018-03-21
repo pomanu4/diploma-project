@@ -44,6 +44,26 @@ public class ProductObjectController {
 		return user_id;
 	}
 	
+	@RequestMapping(value = "test", method = RequestMethod.GET)
+	public String testMethod(Model model) {
+		int id = 1;
+		Product product = productService.productWithAllInfo(id);
+		model.addAttribute("product", product);
+		
+		
+		return "test";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "usr-changePrice", method = RequestMethod.GET)
 	public String addPrice(@RequestParam("prodid") int product_id, @RequestParam("prodPrice") int newPrice, Model model) {
 		productService.setNewPrice(product_id, newPrice);
@@ -103,7 +123,12 @@ public class ProductObjectController {
 		
 		return "userProductDetails";
 	}
-		
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "usr-product-{id}", method = RequestMethod.GET)
 	public String prodByID(Model model, @PathVariable("id") int id) {
 		Product productPict = productService.findByIdWithPicture(id);
@@ -111,11 +136,19 @@ public class ProductObjectController {
 		Product productWithOwner = productService.productWithOwnerById(id);
 		boolean val = productPict.getPictures().isEmpty();
 		model.addAttribute("isEmty", val);
-		model.addAttribute("prodOwner", productWithOwner);
+		//model.addAttribute("prodOwner", productWithOwner);
 		model.addAttribute("prodPicture", productPict);
 		model.addAttribute("prodComent", productComm);
+		
 		return "oneproduct";
 	}
+	
+	
+	
+	
+	
+	
+	
 ///////////	
 	@RequestMapping(value = "usr-showAllProducts", method = RequestMethod.GET)
 	public String allProducts(Model model) {

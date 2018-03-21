@@ -36,7 +36,7 @@
 			<div class="col-md-9 middleBlock">
 				<div class="contentBlock">
 				
-					<div class="mainImg">
+					<div class="mainImg" th:replace="fragments/fragment :: ((${isEmty})? noImage : ownerProdImg )">
 					
 						<div class="imgContent">
 							<div th:each="path : ${productWithPictures.pictures}">

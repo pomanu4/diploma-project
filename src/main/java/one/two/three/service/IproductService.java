@@ -8,13 +8,23 @@ import one.two.three.entity.Product;
 
 public interface IproductService {
 	
+	public Product productWithAllInfo(int podId);
+	
+	
+	
+	
 	public void saveProduct(Product product);
 	
 	public List<Product>prodWithPicture();
 	
 	public void productToDB(Product product, int user_id);
 	
+	
+	///////////
 	public Product findByIdWithPicture(int id);
+	//////////
+	
+	
 	
 	public Product findByIdWithComment(int id);
 	
@@ -24,13 +34,27 @@ public interface IproductService {
 	
 	public void saveProductWithInfo(MultipartFile file, Product product, int owner_id);
 	
+	
+	
+	/////////
 	public Product productWithOwnerById(int id);
+	/////////
+	
+	
+	
 	
 	public void addProductQantity(int prod_id, int newQantity);
 	
 	public void setNewPrice(int prod_id, int newPrice);
 	
+	
+	
+	//////////
 	public Product oneProdWithCommentandComUser(int product_id);
+	/////////
+	
+	
+	
 	
 	public List<Product> findByProductNamePattern(String pattern);
 	

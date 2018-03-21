@@ -66,7 +66,6 @@
 				
 				<div class="mainImg" th:fragment="withImage">
 						<div class="imgContent" >
-						frag!!
 							<div th:each="picture : ${pictureList}">
 								<img  alt="alt" th:src="@{${picture.picturePath}}" class="simpleImageAndForm"/>
 								<form th:action="@{admin-defaultPhoto}" method="get">
@@ -87,18 +86,62 @@
 							<span class="glyphicon glyphicon-chevron-right"></span>
 							<span class="sr-only">Next</span>
 						</a>
-					
-					<div class="mainImg" th:fragment="noImage" >
-						no image added
-					</div>
-				
 
-			</div>
+				</div>
+				
+				<div class="mainImg" th:fragment="noImage" >
+					no image added
+				</div>
+				
+				<div class="mainImg" th:fragment="ownerProdImg">
+					
+						<div class="imgContent">
+							<div th:each="path : ${productWithPictures.pictures}">
+								<img alt="imege" th:src="@{${path.picturePath}}" class="simpleImageAndForm"/>
+								<form action="" th:action="@{usr-removePicture}" method="get" >
+									<input type="hidden" th:name="pictureId" th:value="${path.id}" />
+									<input type="hidden" th:name="productId" th:value="${productWithPictures.id}" />
+									<input type="submit" value="remove" class="inputButton" />
+								</form>
+							</div>
+						</div>			
+						
+						<!-- Left and right controls -->
+						<a class="left carousel-control" href="#myCarousel" >
+							<span class="glyphicon glyphicon-chevron-left"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						
+						<a class="right carousel-control" href="#myCarousel" >
+						<span class="glyphicon glyphicon-chevron-right"></span>
+						<span class="sr-only">Next</span>
+						</a>
+						
+					</div>
+					
+					<div class="mainImg" th:fragment="prodImg">
+						<div class="imgContent">
+							<img th:each="path : ${prodPicture.pictures}" alt="alt" th:src="@{${path.picturePath}}" class="simpleImage"/>
+						</div>			
+						
+						<!-- Left and right controls -->
+						<a class="left carousel-control" href="#myCarousel" >
+							<span class="glyphicon glyphicon-chevron-left"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						
+						<a class="right carousel-control" href="#myCarousel" >
+						<span class="glyphicon glyphicon-chevron-right"></span>
+						<span class="sr-only">Next</span>
+						</a>
+					</div>
+			
+			
 			<div class="adv col-md-3">reclama 111</div>
 			<div class="col-md-12 col-sm-12 container-fluid footer">footer</div>
 		</div>
 	</div>
-			
+</div>			
 <script src="javaScript.js"></script>
 </body>
 </html>

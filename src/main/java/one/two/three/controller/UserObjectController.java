@@ -36,6 +36,8 @@ public class UserObjectController {
 		return user_id;
 	}
 	
+	
+	
 	@RequestMapping(value = "admin-findUserById", method = RequestMethod.GET)
 	public String adminFindUserById(@RequestParam("userId") int user_id, Model model) {
 		User user = userService.oneUserWithInfo(user_id);

@@ -79,7 +79,7 @@ public class MainConfiguration extends WebMvcConfigurerAdapter implements Applic
 	@Bean
 	public MessageSource messageSource() {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-		messageSource.setBasename("messages");
+		messageSource.setBasenames("mll/messagesUA", "mll/messagesEN");
 		messageSource.setDefaultEncoding("UTF-8");
 
 		return messageSource;

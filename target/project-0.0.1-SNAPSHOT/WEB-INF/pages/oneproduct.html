@@ -37,7 +37,7 @@
 			
 				<div class="contentBlock">
 				
-					<div class="mainImg">
+					<div class="mainImg" th:replace="fragments/fragment :: ((${isEmty})? noImage : prodImg )">
 						<div class="imgContent">
 							<img th:each="path : ${prodPicture.pictures}" alt="alt" th:src="@{${path.picturePath}}" class="simpleImage"/>
 						</div>			

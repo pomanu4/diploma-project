@@ -42,4 +42,6 @@ public interface IuserService {
 	
 	public User oneUserWithComplain(int userId);
 	
+	
+	
 }
