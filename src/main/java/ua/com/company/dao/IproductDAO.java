@@ -13,8 +13,8 @@ public interface IproductDAO extends JpaRepository<Product, Integer> {
 	@Query("SELECT p FROM Product p  LEFT JOIN FETCH p.pictures ")
 	public List<Product> productsWithPicture();
 
-	@Query("SELECT p FROM Product p  JOIN FETCH p.pictures  JOIN FETCH p.comments c JOIN FETCH c.user "
-			+ "JOIN FETCH p.owner o JOIN FETCH o.userInfo " + " WHERE p.id=(:prodId) ")
+	@Query("SELECT p FROM Product p  LEFT JOIN FETCH p.pictures  LEFT JOIN FETCH p.comments c LEFT JOIN FETCH c.user "
+			+ "LEFT JOIN FETCH p.owner o LEFT JOIN FETCH o.userInfo " + " WHERE p.id=(:prodId) ")
 	public Product productWithAllFields(@Param("prodId") Integer prodId);
 
 	@Query("SELECT p FROM Product p  LEFT JOIN FETCH p.pictures WHERE p.id = (:id) ")

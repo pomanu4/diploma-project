@@ -61,10 +61,8 @@ public class CommentObjectController {
 			return "comentDenied";
 		}
 		commentService.addCommentToProduct(prod_id, commentText, thisUserId());
-		Product productPict = productService.findByIdWithPicture(prod_id);
+		Product productPict = productService.productWithAllInfo(prod_id);
 		Product productComm = productService.oneProdWithCommentandComUser(prod_id);
-		Product productWithOwner = productService.productWithOwnerById(prod_id);
-		model.addAttribute("prodOwner", productWithOwner);
 		model.addAttribute("prodPicture", productPict);
 		model.addAttribute("prodComent", productComm);
 

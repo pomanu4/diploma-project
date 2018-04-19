@@ -119,11 +119,12 @@ public class ProductObjectController {
 
 	@RequestMapping(value = "usr-product-{id}", method = RequestMethod.GET)
 	public String prodByID(Model model, @PathVariable("id") int id) {
-		Product productPicture = productService.findByIdWithPicture(id);
+		Product product = productService.productWithAllInfo(id);
 		Product productComment = productService.oneProdWithCommentandComUser(id);
-		boolean val = productPicture.getPictures().isEmpty();
+		System.out.println(product);
+		boolean val = product.getPictures().isEmpty();
 		model.addAttribute("isEmty", val);
-		model.addAttribute("prodPicture", productPicture);
+		model.addAttribute("prodPicture", product);
 		model.addAttribute("prodComent", productComment);
 
 		return "oneproduct";
