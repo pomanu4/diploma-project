@@ -1,6 +1,6 @@
 # diploma-project
-this project is online shop /n
-created as final examination on courses i have finished/n
+this project is online shop \n
+created as final examination on courses i have finished
 tecnologi used:
 spring mvc
 spring security
