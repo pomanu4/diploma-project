@@ -50,7 +50,7 @@ public class User implements UserDetails {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Comment> myComments = new ArrayList<>();
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="user")
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy="user")
 	private DetailUserInfo userInfo;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")

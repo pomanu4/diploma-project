@@ -121,7 +121,6 @@ public class ProductObjectController {
 	public String prodByID(Model model, @PathVariable("id") int id) {
 		Product product = productService.productWithAllInfo(id);
 		Product productComment = productService.oneProdWithCommentandComUser(id);
-		System.out.println(product);
 		boolean val = product.getPictures().isEmpty();
 		model.addAttribute("isEmty", val);
 		model.addAttribute("prodPicture", product);

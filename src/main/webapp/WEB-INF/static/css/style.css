@@ -1,6 +1,7 @@
 div {
 	border: 1px solid black;
 }
+
 .first {
 	display: block;
 	width: 40px;
@@ -8,24 +9,7 @@ div {
 	font-size: 50px;
 	margin-left: 100px;
 	margin-top: 10px;
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .row1 {
 	border-bottom: 1px solid grey;
@@ -33,39 +17,46 @@ div {
 
 .mar {
 	margin-left: 50px;
-	
 }
+
 .span {
 	color: red;
 	font-size: 25px;
 }
-.mid-picture{
+
+.mid-picture {
 	background-image: url("logo.gif");
 	background-repeat: no-repeat;
-    background-position: right bottom;
+	background-position: right bottom;
 }
+
 .middle {
 	height: 180px;
 	background-color: grey;
 }
-.mid-text{
+
+.mid-text {
 	color: white;
 }
+
 .page {
 	width: 240px;
 	margin-left: auto;
 	margin-right: auto;
 }
+
 .form-group {
 	margin-top: 10px;
 	width: 100%;
 	margin-bottom: 20px;
 }
+
 .span-bloc {
 	display: block;
 	margin-bottom: 20px;
 	margin-left: 15px
 }
+
 .mybtn:hover {
 	background-color: orange;
 }
@@ -75,12 +66,12 @@ div {
 	background-color: #595959;
 }
 
-
 .icon-1 i {
 	margin-top: 20px;
 	color: red;
 	font-size: 50px;
 }
+
 .icon-1 {
 	display: block;
 	border: 2px solid grey;
@@ -93,26 +84,31 @@ div {
 	margin-top: 30px;
 	background: white;
 }
+
 .ref-1 p {
 	width: 50%;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	
 }
-.ref-1:hover .icon-1{
+
+.ref-1:hover .icon-1 {
 	background: red;
 }
+
 .ref-1:hover i {
 	color: white;
 }
-.ref-1:hover, .ref-1{
+
+.ref-1:hover, .ref-1 {
 	text-decoration: none;
 	color: grey;
 }
+
 .block {
 	background-color: #f2f2f2;
 }
+
 .span-2 {
 	position: absolute;
 	display: block;
@@ -120,29 +116,35 @@ div {
 	width: 90%;
 	text-align: center;
 }
+
 .span-2-1 {
 	top: 4%;
 	height: 65%;
 	border: 1px solid grey;
 }
+
 .span-2-2 {
 	height: 13%;
 	top: 69%;
 	border: 1px solid grey;
 	font-size: 25px;
 }
+
 .span-2-3 {
 	height: 15%;
 	top: 82%;
 	border: 1px solid grey;
 }
+
 .span-2 a:hover {
 	text-decoration: none;
 }
+
 .block2 {
 	height: 350px;
 	position: absolute;
 }
+
 .cover {
 	float: left;
 	position: relative;
@@ -154,20 +156,9 @@ div {
 	transition: height 1s;
 	background-image: url("logo.gif");
 	background-repeat: no-repeat;
-    background-position: center;
+	background-position: center;
 }
-.block2:hover .cover{
+
+.block2:hover .cover {
 	height: 0px;
 }
-
-
-
-
-
-
-
-
-
-
-
-

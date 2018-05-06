@@ -34,6 +34,7 @@ function hideNewUserProdInfotForm() {
 	document.getElementById("userNewProdInfo").setAttribute("class", "userNewProductInfoInvisible");
 }
 
+/* show multilanguage option */
 $("#lang").click(function(cl) {
 	var pos = $("#lang").position();
 	var value = pos.left + 320;
@@ -42,44 +43,54 @@ $("#lang").click(function(cl) {
 	$("#text").addClass("multiLangVisible");
 	$("#text").css('left', value);
 });
-carosele=( function(){
-	let container = document.querySelector(".mainImg");
-	let left = container.querySelector(".left");
-	let right = container.querySelector(".right");
-	let imgArray = container.querySelectorAll(".imgContent img");
-	let imgContainer = container.querySelector(".imgContent");
-	let count = 0;
-	let imgNumber = imgArray.length;
-	console.log(imgNumber);
-	
-	function move(num){
-		if(num === 1){
-			count = count + num;
-			if(count === imgNumber){
-				count = 0;
-			}
+
+/* caroselle */
+let imgArray = $(".imgContent img");
+let count = 0;
+let imgNumber = imgArray.length;
+
+function move(num){
+	if(num === 1){
+		count = count + num;
+		if(count === imgNumber){
+			count = 0;
 		}
-		if(num === -1){
-			count = count + num;
-			if(count < 0 ){
-				count = imgNumber-1;
-			}
+	}
+	if(num === -1){
+		count = count + num;
+		if(count < 0 ){
+			count = imgNumber-1;
 		}
-		
-		let val = count * (-300);
-		let pixel = val + "px";
-		imgContainer.style.top = pixel;
 	}
 	
-	right.addEventListener('click', function(ivent){
-		move(1);
-	});
-	left.addEventListener('click', function(ivent){
-		move(-1);
-	});
-})();
+	let val = count * (-300);
+	let pixel = val + "px";
+	$(".imgContent").css({"top" : pixel});                     
+}
 
+$(".right").on('click', function(){
+	move(1);
+});
+$(".left").on('click', function(){
+	move(-1);
+});
 
+/* serching filter */
+$("#search").on("input", function(){
+	var text = $(this).val().toLowerCase();
+	var regex = new RegExp("" + text + "" + "i");
+	var aElements = $(".tableDiv a");
+	
+	for(i=0; i<aElements.length; i++){
+		var row = $(aElements[i]).parents("tr");
+		var innerText = $(aElements[i]).text();
+		$(row).show();
+		if(innerText.toLowerCase().indexOf(text)== -1){
+			$(row).hide();
+		}
+		$(aElements[i]).html($(aElements[i]).text().replace(text, "<b>"+text+"</b>"));
+	}
+} );
 
 
 

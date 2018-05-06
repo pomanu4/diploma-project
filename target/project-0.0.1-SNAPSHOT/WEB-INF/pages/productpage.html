@@ -5,6 +5,7 @@
      <meta name="viewport" 
            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/> 
      <meta http-equiv="X-UA-Compatible" content="ie=edge"/> 
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	 <link rel = "stylesheet" href = "style/bootstrap.min.css">
@@ -34,7 +35,9 @@
 	
 		<div class="row">
 			<div class="col-md-9 middleBlock">
-				
+				<div>
+					<input id="search" type="text" class="form-control" placeholder="Search">
+				</div>
 				<div class="btn-group btn-group buttonDiv">
 					<a th:href="@{usr-sortByName}" class="btn btn-default sort">sort</a>
 					<a th:href="@{usr-sortByPrice}" class="btn btn-default sortPrice">sort</a>
@@ -44,7 +47,6 @@
 					<a th:href="@{usr-confirmOrder}" class="btn btn-default">confirm order</a>
 					<a th:href="@{usr-deleteOrder}" class="btn btn-default">delete order</a>
 				</div>
-			<p th:text="${prodListContainer.prodlist}"></p>
 				<div class="tableDiv">
 					<table class="table table-bordered">
 						<tr>
@@ -78,6 +80,6 @@
 			<div class="col-md-12 col-sm-12 container-fluid footer">footer</div>
 		</div>
 	</div>
-
+<script src="jscript/javaScript.js"></script>
 </body>
 </html>
