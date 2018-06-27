@@ -30,10 +30,10 @@ public class UserMailSenderImpl implements IuserMailSender {
 		MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
 
 		try {
-			messageHelper.setFrom(new InternetAddress(env.getProperty("mailSender.userName")));
+			messageHelper.setFrom(new InternetAddress(env.getProperty("mailSender.gamail.account")));
 			messageHelper.setTo(user.getEmail());
 			messageHelper.setText("<h4>hello dear user<h4><br> " + user.getName() + " you have been registred in"
-					+ " some suspitient web site with email " + user.getEmail() + " and password " + user.getPassword(),
+					+ " some web site with email " + user.getEmail() + " and password " + user.getPassword(),
 					true);
 
 		} catch (MessagingException e) {

@@ -100,7 +100,7 @@ public class MainConfiguration extends WebMvcConfigurerAdapter implements Applic
 		JavaMailSenderImpl senderImpl = new JavaMailSenderImpl();
 		senderImpl.setHost(env.getProperty("mailSender.host"));
 		senderImpl.setPort(env.getProperty("mailSender.port", Integer.class));
-		senderImpl.setUsername(env.getProperty("mailSender.userName"));
+		senderImpl.setUsername(env.getProperty("mailSender.gamail.account"));
 		senderImpl.setPassword(env.getProperty("mailSender.mailPassword"));
 		Properties properties = senderImpl.getJavaMailProperties();
 		properties.put(env.getProperty("mailSender.transportProtocol"),

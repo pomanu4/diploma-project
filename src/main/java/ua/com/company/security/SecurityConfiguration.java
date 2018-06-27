@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.authentication.configurers.provisioning.InMemoryUserDetailsManagerConfigurer;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,6 +26,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
 	
+	private static final String USER_ROLE = "hasRole('ROLE_USER')";
+	private static final String ADMIN_ROLE = "hasRole('ROLE_ADMIN')";
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -74,32 +77,35 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
 		return new InMemoryUserDetailsManagerConfigurer<>();
 	}
 	
-	
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-			.antMatchers("/", "registration", "information", "indexPage")
-			.permitAll()
-			.antMatchers("/admin-*", "/admin")
-			.access("hasRole('ADMIN')")
-			.antMatchers("/usr-*")
-			.access("hasRole('USER') or hasRole('ADMIN')")
-			.anyRequest()
-			.authenticated()
-			.and()
-			.formLogin()
-			.failureUrl("/loginFail")
-			.loginPage("/login")
-			.permitAll()
+		http
+		.formLogin()
+			.loginPage("/login").permitAll()
+			.failureUrl("/loginFail").permitAll()
 			.usernameParameter("email")
 			.passwordParameter("password")
-			.and()
-			.logout()
+			.defaultSuccessUrl("/")
+		.and()
+		.logout()
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		.logoutSuccessUrl("/");
+			.logoutSuccessUrl("/")
+		.and()
+		.authorizeRequests()
+			.antMatchers("/", "/registration", "/information", "/indexPage", "/translate", "/userReg").permitAll()
+			.antMatchers("/admin-*", "/admin").access(ADMIN_ROLE)
+			.antMatchers("/usr-*", "/**").access(ADMIN_ROLE + " or " + USER_ROLE)
+		.anyRequest().authenticated();
 		http.csrf().csrfTokenRepository(csrfTokenRepository());
-		http.authorizeRequests().antMatchers("/resources/**").permitAll().anyRequest().permitAll();
+		
+	}
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/resources/**");
+		web.ignoring().antMatchers("/style/**");
+		web.ignoring().antMatchers("/jscript/**");
+		
 	}
 	
 	private CsrfTokenRepository csrfTokenRepository() { 

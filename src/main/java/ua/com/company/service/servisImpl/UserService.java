@@ -69,7 +69,7 @@ public class UserService implements IuserService, UserDetailsService {
 		userInfo.setFoto(defaultPH.userDefoultPhoto(file));
 		user.addUserInfo(userInfo);
 		saveUser(user);
-//		sender.sendLetter(user);
+		sender.sendLetter(user);
 	}
 
 	@Override
